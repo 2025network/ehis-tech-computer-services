@@ -69,7 +69,7 @@ export function LaptopInventory({ products }: { products: readonly Product[] }) 
 
   return (
     <div>
-      <div className="rounded-xl border border-cyan-100 bg-[linear-gradient(135deg,#f0f9ff,#ffffff_48%,#eef6ff)] p-5 shadow-xl shadow-slate-950/5 ring-1 ring-cyan-100/70 sm:p-6">
+      <div className="rounded-xl border border-cyan-100 bg-[linear-gradient(135deg,#dff3ff,#f8fbff_48%,#e7eef8)] p-5 shadow-2xl shadow-slate-950/10 ring-1 ring-cyan-200/80 sm:p-6">
         <div className="grid gap-4 lg:grid-cols-[1fr_repeat(3,170px)]">
           <label className="grid gap-2 text-sm font-extrabold text-slate-800">
             Search inventory

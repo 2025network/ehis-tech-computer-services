@@ -37,19 +37,19 @@ export default function Home() {
       <section className="relative overflow-hidden bg-slate-950 text-white">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(34,211,238,0.16),transparent_30%),radial-gradient(circle_at_78%_28%,rgba(250,204,21,0.08),transparent_24%),linear-gradient(135deg,#020617,#0f172a_52%,#111827)]" />
         <HeroMessageRotator />
-        <div className="section-shell relative grid min-h-[660px] items-center gap-10 pb-16 pt-20 sm:pt-24 lg:grid-cols-[0.98fr_1.02fr] lg:pt-20">
+        <div className="section-shell relative grid min-h-[560px] items-center gap-8 pb-10 pt-10 sm:pt-12 lg:grid-cols-[0.98fr_1.02fr] lg:pt-10">
           <div>
             <div className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-cyan-100">
               <span className="h-2 w-2 rounded-full bg-cyan-400" />
               Professional laptop supplier
             </div>
-            <h1 className="mt-5 max-w-4xl text-4xl font-extrabold leading-[1.1] text-white sm:text-5xl lg:text-[56px] xl:text-6xl">
+            <h1 className="mt-4 max-w-4xl text-[32px] font-extrabold leading-[1.12] text-white sm:text-[44px] lg:text-[44px] xl:text-[52px]">
               Professional Laptop Supplier for Work, School & Business
             </h1>
-            <p className="mt-5 max-w-2xl text-base font-medium leading-7 text-slate-100 sm:text-lg">
+            <p className="mt-4 max-w-2xl text-base font-medium leading-7 text-[#e5e7eb] sm:text-lg">
               Quality-tested laptops, accessories, repairs, upgrades, and corporate supply support from Ehi's Tech Computer Services.
             </p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <Link href="/laptops" className="inline-flex items-center justify-center gap-2 rounded-md bg-cyan-400 px-6 py-3.5 text-sm font-bold text-slate-950 transition hover:bg-cyan-300">
                 Browse Inventory <ArrowRight size={18} aria-hidden="true" />
               </Link>
@@ -57,7 +57,7 @@ export default function Home() {
                 Request Quote
               </Link>
             </div>
-            <div className="mt-8 grid gap-3 sm:grid-cols-2">
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">
               {trust.map((item) => {
                 const Icon = item.icon;
                 return (
@@ -72,13 +72,13 @@ export default function Home() {
 
           <div className="relative">
             <div className="absolute -inset-6 rounded-full bg-cyan-400/10 blur-3xl" />
-            <div className="relative overflow-hidden rounded-xl border border-white/10 bg-white/[0.06] p-5 shadow-2xl shadow-black/30">
-              <div className="rounded-lg bg-white p-6">
+            <div className="relative overflow-hidden rounded-xl border border-white/10 bg-white/[0.06] p-4 shadow-2xl shadow-black/30">
+              <div className="rounded-lg bg-white p-4">
                 <div className="relative aspect-[16/10] overflow-hidden rounded-md bg-slate-100">
                   <Image src="/hp-1/1.jpg" alt="Premium laptop supplied by Ehi's Tech" fill priority sizes="(min-width: 1024px) 48vw, 100vw" className="object-contain p-4" />
                 </div>
               </div>
-              <div className="grid gap-3 pt-5 sm:grid-cols-3">
+              <div className="grid gap-3 pt-4 sm:grid-cols-3">
                 {[
                   { label: "Tested systems", icon: ShieldCheck },
                   { label: "Warranty support", icon: PackageCheck },
@@ -98,16 +98,16 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-white py-16">
+      <section className="bg-[linear-gradient(180deg,#eaf8ff_0%,#f8fbff_38%,#ffffff_100%)] py-8 sm:py-10">
         <div className="section-shell">
           <SectionIntro label="Featured laptops" title="Quality systems ready for quote requests." text="Explore selected laptops with real product photos, clear specifications, and quote support." />
-          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          <div className="mt-7 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {featured.map((product) => <ProductCard key={product.slug} product={product} large />)}
           </div>
         </div>
       </section>
 
-      <section className="bg-slate-100 py-16">
+      <section className="bg-slate-100 py-12">
         <div className="section-shell">
           <SectionIntro label="Business laptops" title="Built for offices, executives, and productivity." text="Corporate-grade laptops for multitasking, meetings, documents, accounting, school administration, and team deployment." />
           <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
@@ -116,7 +116,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-white py-16">
+      <section className="bg-white py-12">
         <div className="section-shell grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
             <SectionIntro label="Student laptops" title="Reliable systems for study and everyday work." text="Balanced options for assignments, research, online classes, home use, and light business tasks." />
@@ -130,7 +130,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-slate-950 py-16 text-white">
+      <section className="bg-slate-950 py-12 text-white">
         <div className="section-shell grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
             <p className="text-sm font-bold uppercase tracking-wide text-cyan-300">Corporate supply</p>

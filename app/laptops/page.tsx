@@ -13,27 +13,27 @@ export const metadata: Metadata = {
 export default function LaptopsPage() {
   return (
     <PageShell>
-      <section className="bg-[#f4f8ff] py-14 sm:py-16">
+      <section className="bg-[linear-gradient(180deg,#eaf8ff,#f8fbff)] py-8 sm:py-10">
         <div className="section-shell max-w-4xl">
-          <p className="text-sm font-bold uppercase tracking-wide text-[#d9a441]">Laptop inventory</p>
-          <h1 className="mt-3 text-4xl font-bold leading-tight text-[#073b7a] sm:text-5xl">
+          <p className="text-sm font-bold uppercase tracking-wide text-cyan-700">Laptop inventory</p>
+          <h1 className="mt-3 text-3xl font-extrabold leading-tight text-slate-950 sm:text-4xl">
             Search available laptops and request a quote.
           </h1>
-          <p className="mt-5 text-lg leading-8 text-slate-700">
+          <p className="mt-4 text-base leading-7 text-slate-700 sm:text-lg">
             Filter by brand, category, RAM, SSD size, condition, and price to find a laptop that
             fits your work, school, gaming, or corporate supply needs.
           </p>
         </div>
       </section>
 
-      <section className="section-shell py-10 sm:py-14">
+      <section className="section-shell -mt-3 pb-10 pt-0 sm:-mt-4 sm:pb-12">
         <LaptopInventory products={laptopProducts} />
       </section>
 
       <section className="bg-white py-14">
         <div className="section-shell">
-          <p className="text-sm font-bold uppercase tracking-wide text-[#d9a441]">Categories</p>
-          <h2 className="mt-3 text-3xl font-bold text-[#073b7a]">Shop by laptop category.</h2>
+          <p className="text-sm font-bold uppercase tracking-wide text-cyan-700">Categories</p>
+          <h2 className="mt-3 text-3xl font-bold text-cyan-800">Shop by laptop category.</h2>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {laptopCategories.map((category) => (
               <article key={category.slug} className="rounded border border-blue-100 bg-[#f4f8ff] p-5">
