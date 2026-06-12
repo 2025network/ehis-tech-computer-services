@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { LaptopInventory } from "../components/LaptopInventory";
 import { PageShell } from "../components/PageShell";
 import { laptopCategories, laptopProducts } from "../data";
@@ -13,20 +13,20 @@ export const metadata: Metadata = {
 export default function LaptopsPage() {
   return (
     <PageShell>
-      <section className="bg-[linear-gradient(180deg,#eaf8ff,#f8fbff)] py-8 sm:py-10">
+      <section className="bg-[linear-gradient(180deg,#eaf8ff,#f8fbff)] py-6 sm:py-8">
         <div className="section-shell max-w-4xl">
           <p className="text-sm font-bold uppercase tracking-wide text-cyan-700">Laptop inventory</p>
-          <h1 className="mt-3 text-3xl font-extrabold leading-tight text-slate-950 sm:text-4xl">
+          <h1 className="mt-2 text-3xl font-extrabold leading-tight text-slate-950 sm:text-4xl">
             Search available laptops and request a quote.
           </h1>
-          <p className="mt-4 text-base leading-7 text-slate-700 sm:text-lg">
+          <p className="mt-3 text-base leading-7 text-slate-700 sm:text-lg">
             Filter by brand, category, RAM, SSD size, condition, and price to find a laptop that
             fits your work, school, gaming, or corporate supply needs.
           </p>
         </div>
       </section>
 
-      <section className="section-shell -mt-3 pb-10 pt-0 sm:-mt-4 sm:pb-12">
+      <section className="section-shell -mt-2 pb-8 pt-0 sm:-mt-3 sm:pb-10">
         <LaptopInventory products={laptopProducts} />
       </section>
 
@@ -47,3 +47,4 @@ export default function LaptopsPage() {
     </PageShell>
   );
 }
+

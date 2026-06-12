@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useMemo, useState } from "react";
 import { Search, SlidersHorizontal } from "lucide-react";
@@ -24,10 +24,10 @@ type Product = {
 
 const priceBands = [
   { label: "All prices", min: 0, max: Infinity },
-  { label: "Under ₦300k", min: 0, max: 300000 },
-  { label: "₦300k - ₦500k", min: 300000, max: 500000 },
-  { label: "₦500k - ₦800k", min: 500000, max: 800000 },
-  { label: "Above ₦800k", min: 800000, max: Infinity },
+  { label: "Under NGN300k", min: 0, max: 300000 },
+  { label: "NGN300k - NGN500k", min: 300000, max: 500000 },
+  { label: "NGN500k - NGN800k", min: 500000, max: 800000 },
+  { label: "Above NGN800k", min: 800000, max: Infinity },
 ];
 
 export function LaptopInventory({ products }: { products: readonly Product[] }) {
@@ -69,43 +69,41 @@ export function LaptopInventory({ products }: { products: readonly Product[] }) 
 
   return (
     <div>
-      <div className="rounded-xl border border-cyan-100 bg-[linear-gradient(135deg,#dff3ff,#f8fbff_48%,#e7eef8)] p-5 shadow-2xl shadow-slate-950/10 ring-1 ring-cyan-200/80 sm:p-6">
-        <div className="grid gap-4 lg:grid-cols-[1fr_repeat(3,170px)]">
-          <label className="grid gap-2 text-sm font-extrabold text-slate-800">
+      <div className="rounded-xl border border-cyan-200 bg-[linear-gradient(135deg,#d7ecf8,#f5f9fd_45%,#e4ecf6)] p-4 shadow-2xl shadow-slate-950/12 ring-1 ring-cyan-100 sm:p-5 lg:p-6">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
+          <label className="grid min-w-0 gap-2 text-sm font-extrabold text-slate-800 md:col-span-2">
             Search inventory
-            <span className="relative">
+            <span className="relative block w-full">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-cyan-600" size={18} aria-hidden="true" />
               <input
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
                 placeholder="Search HP, SSD, ThinkPad, gaming..."
-                className="w-full rounded-lg border border-cyan-100 bg-white py-3.5 pl-10 pr-3 text-sm font-medium text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 focus:border-cyan-500 focus:ring-4 focus:ring-cyan-100"
+                className="block w-full rounded-lg border border-cyan-100 bg-white py-3.5 pl-10 pr-3 text-sm font-medium text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 focus:border-cyan-500 focus:ring-4 focus:ring-cyan-100"
               />
             </span>
           </label>
           <Filter label="Brand" value={brand} values={brands} onChange={setBrand} />
           <Filter label="Category" value={category} values={categories} onChange={setCategory} />
           <Filter label="Condition" value={condition} values={conditions} onChange={setCondition} />
-        </div>
-        <div className="mt-5 grid gap-4 sm:grid-cols-3">
           <Filter label="RAM" value={ram} values={rams} onChange={setRam} suffix="GB" />
           <Filter label="Storage" value={storage} values={storages} onChange={setStorage} suffix="GB" />
           <Filter label="Price" value={priceBand} values={priceBands.map((band) => band.label)} onChange={setPriceBand} />
         </div>
-        <p className="mt-5 inline-flex items-center gap-2 rounded-full bg-slate-950 px-4 py-2 text-sm font-bold text-white">
+        <p className="mt-5 inline-flex items-center gap-2 rounded-full bg-slate-950 px-4 py-2 text-sm font-bold text-white shadow-sm">
           <SlidersHorizontal className="text-cyan-300" size={17} aria-hidden="true" />
           Showing {visibleProducts.length} of {products.length} products
         </p>
       </div>
 
       {visibleProducts.length > 0 ? (
-        <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-7 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {visibleProducts.map((product) => (
             <ProductCard key={product.slug} product={product} />
           ))}
         </div>
       ) : (
-        <div className="mt-8 rounded-xl border border-cyan-100 bg-white p-8 text-center shadow-sm ring-1 ring-cyan-100">
+        <div className="mt-7 rounded-xl border border-cyan-100 bg-white p-8 text-center shadow-sm ring-1 ring-cyan-100">
           <h2 className="text-xl font-bold text-cyan-800">No matching laptops</h2>
           <p className="mt-2 text-sm text-slate-600">Try a different brand, RAM, storage, condition, or price range.</p>
         </div>
@@ -128,9 +126,9 @@ function Filter({
   suffix?: string;
 }) {
   return (
-    <label className="grid gap-2 text-sm font-extrabold text-slate-800">
+    <label className="grid min-w-0 gap-2 text-sm font-extrabold text-slate-800">
       {label}
-      <select value={value} onChange={(event) => onChange(event.target.value)} className="rounded-lg border border-cyan-100 bg-white px-3 py-3.5 text-sm font-semibold text-slate-700 shadow-sm outline-none transition focus:border-cyan-500 focus:ring-4 focus:ring-cyan-100">
+      <select value={value} onChange={(event) => onChange(event.target.value)} className="block w-full rounded-lg border border-cyan-100 bg-white px-3 py-3.5 text-sm font-semibold text-slate-700 shadow-sm outline-none transition focus:border-cyan-500 focus:ring-4 focus:ring-cyan-100">
         {values.map((item) => (
           <option key={item} value={item}>
             {item === "All" ? item : `${item}${suffix && /^\d+$/.test(item) ? suffix : ""}`}
