@@ -37,32 +37,32 @@ export default function Home() {
       <section className="relative overflow-hidden bg-slate-950 text-white">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(34,211,238,0.16),transparent_30%),radial-gradient(circle_at_78%_28%,rgba(250,204,21,0.08),transparent_24%),linear-gradient(135deg,#020617,#0f172a_52%,#111827)]" />
         <HeroMessageRotator />
-        <div className="section-shell relative grid min-h-[560px] items-center gap-8 pb-10 pt-10 sm:pt-12 lg:grid-cols-[0.98fr_1.02fr] lg:pt-10">
+        <div className="section-shell relative grid min-h-[430px] items-center gap-6 pb-7 pt-7 sm:pt-8 lg:grid-cols-[0.98fr_1.02fr] lg:pb-8 lg:pt-8">
           <div>
             <div className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-cyan-100">
               <span className="h-2 w-2 rounded-full bg-cyan-400" />
               Professional laptop supplier
             </div>
-            <h1 className="mt-4 max-w-4xl text-[32px] font-extrabold leading-[1.12] text-white sm:text-[44px] lg:text-[44px] xl:text-[52px]">
+            <h1 className="mt-3 max-w-[600px] text-[30px] font-extrabold leading-[1.12] text-white sm:text-[40px] lg:text-[40px] xl:text-[46px]">
               Professional Laptop Supplier for Work, School & Business
             </h1>
-            <p className="mt-4 max-w-2xl text-base font-medium leading-7 text-[#e5e7eb] sm:text-lg">
+            <p className="mt-3 max-w-[600px] text-base font-medium leading-7 text-[#e5e7eb] sm:text-[17px]">
               Quality-tested laptops, accessories, repairs, upgrades, and corporate supply support from Ehi's Tech Computer Services.
             </p>
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <Link href="/laptops" className="inline-flex items-center justify-center gap-2 rounded-md bg-cyan-400 px-6 py-3.5 text-sm font-bold text-slate-950 transition hover:bg-cyan-300">
+            <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+              <Link href="/laptops" className="inline-flex items-center justify-center gap-2 rounded-md bg-cyan-400 px-5 py-3 text-sm font-bold text-slate-950 transition hover:bg-cyan-300">
                 Browse Inventory <ArrowRight size={18} aria-hidden="true" />
               </Link>
-              <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-md border border-white/20 px-6 py-3.5 text-sm font-bold text-white transition hover:bg-white/10">
+              <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-md border border-white/20 px-5 py-3 text-sm font-bold text-white transition hover:bg-white/10">
                 Request Quote
               </Link>
             </div>
-            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+            <div className="mt-5 grid gap-2.5 sm:grid-cols-2">
               {trust.map((item) => {
                 const Icon = item.icon;
                 return (
-                  <div key={item.label} className="flex items-center gap-3 rounded-md border border-white/10 bg-white/5 p-4">
-                    <Icon className="text-cyan-300" size={22} aria-hidden="true" />
+                  <div key={item.label} className="flex items-center gap-2.5 rounded-md border border-white/10 bg-white/5 p-3">
+                    <Icon className="text-cyan-300" size={20} aria-hidden="true" />
                     <span className="text-sm font-semibold text-slate-100">{item.label}</span>
                   </div>
                 );
@@ -71,14 +71,14 @@ export default function Home() {
           </div>
 
           <div className="relative">
-            <div className="absolute -inset-6 rounded-full bg-cyan-400/10 blur-3xl" />
-            <div className="relative overflow-hidden rounded-xl border border-white/10 bg-white/[0.06] p-4 shadow-2xl shadow-black/30">
-              <div className="rounded-lg bg-white p-4">
-                <div className="relative aspect-[16/10] overflow-hidden rounded-md bg-slate-100">
-                  <Image src="/hp-1/1.jpg" alt="Premium laptop supplied by Ehi's Tech" fill priority sizes="(min-width: 1024px) 48vw, 100vw" className="object-contain p-4" />
+            <div className="absolute -inset-4 rounded-full bg-cyan-400/10 blur-3xl" />
+            <div className="relative overflow-hidden rounded-xl border border-white/10 bg-white/[0.06] p-3 shadow-2xl shadow-black/30">
+              <div className="rounded-lg bg-white p-3">
+                <div className="relative mx-auto aspect-[16/10] w-[85%] overflow-hidden rounded-md bg-slate-100">
+                  <Image src="/hp-1/1.jpg" alt="Premium laptop supplied by Ehi's Tech" fill priority sizes="(min-width: 1024px) 48vw, 100vw" className="object-contain p-3" />
                 </div>
               </div>
-              <div className="grid gap-3 pt-4 sm:grid-cols-3">
+              <div className="grid gap-2.5 pt-3 sm:grid-cols-3">
                 {[
                   { label: "Tested systems", icon: ShieldCheck },
                   { label: "Warranty support", icon: PackageCheck },
@@ -86,9 +86,9 @@ export default function Home() {
                 ].map((item) => {
                   const Icon = item.icon;
                   return (
-                    <div key={item.label} className="rounded-md border border-white/10 bg-white/5 p-4 text-center">
-                      <Icon className="mx-auto text-cyan-300" size={22} aria-hidden="true" />
-                      <p className="mt-2 text-sm font-bold text-white">{item.label}</p>
+                    <div key={item.label} className="rounded-md border border-white/10 bg-white/5 p-3 text-center">
+                      <Icon className="mx-auto text-cyan-300" size={20} aria-hidden="true" />
+                      <p className="mt-1.5 text-xs font-bold text-white">{item.label}</p>
                     </div>
                   );
                 })}
@@ -98,33 +98,33 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-[linear-gradient(180deg,#eaf8ff_0%,#f8fbff_38%,#ffffff_100%)] py-8 sm:py-10">
+      <section className="bg-[linear-gradient(180deg,#eaf8ff_0%,#f8fbff_45%,#ffffff_100%)] py-4 sm:py-6 lg:py-8">
         <div className="section-shell">
           <SectionIntro label="Featured laptops" title="Quality systems ready for quote requests." text="Explore selected laptops with real product photos, clear specifications, and quote support." />
-          <div className="mt-7 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          <div className="mt-4 grid gap-4 md:mt-6 md:grid-cols-2 xl:grid-cols-3">
             {featured.map((product) => <ProductCard key={product.slug} product={product} large />)}
           </div>
         </div>
       </section>
 
-      <section className="bg-slate-100 py-12">
+      <section className="bg-slate-100 py-10">
         <div className="section-shell">
           <SectionIntro label="Business laptops" title="Built for offices, executives, and productivity." text="Corporate-grade laptops for multitasking, meetings, documents, accounting, school administration, and team deployment." />
-          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-7 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             {business.map((product) => <ProductCard key={product.slug} product={product} />)}
           </div>
         </div>
       </section>
 
-      <section className="bg-white py-12">
-        <div className="section-shell grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+      <section className="bg-white py-10">
+        <div className="section-shell grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
             <SectionIntro label="Student laptops" title="Reliable systems for study and everyday work." text="Balanced options for assignments, research, online classes, home use, and light business tasks." />
             <Link href="/laptops" className="mt-6 inline-flex items-center gap-2 rounded-md bg-slate-950 px-5 py-3 text-sm font-bold text-white transition hover:bg-cyan-700">
               Browse student options <ArrowRight size={17} aria-hidden="true" />
             </Link>
           </div>
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid gap-5 md:grid-cols-2">
             {students.map((product) => <ProductCard key={product.slug} product={product} />)}
           </div>
         </div>
@@ -190,13 +190,13 @@ export default function Home() {
           <div>
             <p className="text-sm font-bold uppercase tracking-wide text-cyan-700">Warranty & support</p>
             <h2 className="mt-3 text-4xl font-bold text-slate-950">Support that continues after purchase.</h2>
-            <p className="mt-4 text-base leading-7 text-slate-600">Warranty terms are explained before payment, with setup, repair, upgrade, and follow-up support available.</p>
+            <p className="mt-3 text-base leading-7 text-slate-600">Warranty terms are explained before payment, with setup, repair, upgrade, and follow-up support available.</p>
             <Link href="/warranty" className="mt-7 inline-flex items-center gap-2 rounded-md border border-slate-300 px-5 py-3 text-sm font-bold text-slate-900 transition hover:border-cyan-300 hover:bg-cyan-50">View support details</Link>
           </div>
           <div className="grid gap-3">
             {warrantySupport.slice(0, 5).map((item) => (
               <div key={item} className="flex items-center gap-3 rounded-md border border-slate-200 bg-slate-50 p-4">
-                <Headphones className="text-cyan-600" size={22} aria-hidden="true" />
+                <Headphones className="text-cyan-600" size={20} aria-hidden="true" />
                 <span className="font-semibold text-slate-700">{item}</span>
               </div>
             ))}
@@ -229,8 +229,8 @@ function SectionIntro({ label, title, text }: { label: string; title: string; te
   return (
     <div className="max-w-3xl">
       <p className="text-sm font-bold uppercase tracking-wide text-cyan-700">{label}</p>
-      <h2 className="mt-3 text-4xl font-bold leading-tight text-slate-950">{title}</h2>
-      <p className="mt-4 text-base leading-7 text-slate-600">{text}</p>
+      <h2 className="mt-2 text-3xl font-bold leading-tight text-slate-950 sm:text-4xl">{title}</h2>
+      <p className="mt-3 text-base leading-7 text-slate-600">{text}</p>
     </div>
   );
 }
