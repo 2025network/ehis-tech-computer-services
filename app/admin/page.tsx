@@ -1,0 +1,149 @@
+import { redirect } from "next/navigation";
+import Link from "next/link";
+import type { Metadata } from "next";
+import { ClipboardList, FileCheck2, Laptop, Megaphone, MessageSquare, Palette, ShieldCheck } from "lucide-react";
+import { isAdminLoggedIn } from "@/lib/auth";
+import { prisma } from "@/lib/prisma";
+import { logProductionError } from "@/lib/runtime";
+import { PageShell } from "../components/PageShell";
+import { ApplicationAdmin } from "./ApplicationAdmin";
+
+export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Admin Dashboard",
+  description:
+    "Protected Ehi's Tech Computer Services admin dashboard for reviewing product inquiries, quote requests, product inventory, tracking codes, and status updates.",
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
+
+export default async function AdminPage() {
+  let loggedIn = false;
+
+  try {
+    loggedIn = await isAdminLoggedIn();
+  } catch (error) {
+    logProductionError("Admin auth check failed", error);
+  }
+
+  if (!loggedIn) {
+    redirect("/admin/login");
+  }
+
+  let adminLoadError = "";
+  const applications = await (async () => {
+    try {
+      return await prisma.application.findMany({
+        orderBy: {
+          createdAt: "desc",
+        },
+      });
+    } catch (error) {
+      logProductionError("Admin requests load failed", error);
+      adminLoadError =
+        "Request data could not be loaded right now. Please refresh in a moment.";
+      return [];
+    }
+  })();
+
+  const pendingCount = applications.filter((application) => application.status === "Pending").length;
+  const documentsCount = applications.filter(
+    (application) =>
+      application.passportUploadPath ||
+      application.passportPhotoPath ||
+      application.bankStatementPath ||
+      application.supportingDocPath
+  ).length;
+
+  return (
+    <PageShell>
+      <section className="bg-[#073b7a] py-12 text-white">
+        <div className="section-shell">
+          <p className="text-sm font-bold uppercase tracking-wide text-[#d9a441]">Admin dashboard</p>
+          <h1 className="mt-3 text-4xl font-bold leading-tight sm:text-5xl">
+            Inventory and quote control center
+          </h1>
+          <p className="mt-4 max-w-3xl text-base leading-7 text-blue-100">
+            Review customer quote requests, manage sample product inventory, open uploaded files,
+            update statuses, and monitor tracking codes from one secure workspace.
+          </p>
+        </div>
+      </section>
+
+      <section className="section-shell py-10 sm:py-12">
+        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          {[
+            { label: "Tracked requests", value: applications.length, icon: ClipboardList },
+            { label: "Pending review", value: pendingCount, icon: ShieldCheck },
+            { label: "With uploads", value: documentsCount, icon: FileCheck2 },
+            { label: "Inventory platform", value: "Live", icon: Laptop },
+          ].map((item) => {
+            const Icon = item.icon;
+            return (
+              <article key={item.label} className="rounded border border-blue-100 bg-white p-5 shadow-sm">
+                <Icon className="text-[#0b4ea2]" size={26} aria-hidden="true" />
+                <p className="mt-4 text-3xl font-bold text-[#073b7a]">{item.value}</p>
+                <p className="mt-1 text-sm font-semibold text-slate-600">{item.label}</p>
+              </article>
+            );
+          })}
+        </div>
+
+        <div className="mt-10">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <h2 className="text-2xl font-bold text-[#073b7a]">Recent customer submissions</h2>
+              <p className="mt-2 text-sm text-slate-600">Newest entries appear first.</p>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <Link
+                href="/admin/products"
+                className="inline-flex items-center justify-center gap-2 rounded bg-[#073b7a] px-4 py-2.5 text-sm font-bold text-white transition hover:bg-[#0b4ea2]"
+              >
+                <Laptop size={17} aria-hidden="true" />
+                Products
+              </Link>
+              <Link
+                href="/admin/inquiries"
+                className="inline-flex items-center justify-center gap-2 rounded bg-blue-50 px-4 py-2.5 text-sm font-bold text-[#073b7a] ring-1 ring-blue-100 transition hover:bg-blue-100"
+              >
+                <MessageSquare size={17} aria-hidden="true" />
+                Inquiries
+              </Link>
+              <Link
+                href="/admin/marketing"
+                className="inline-flex items-center justify-center gap-2 rounded bg-[#d9a441] px-4 py-2.5 text-sm font-bold text-[#102033] transition hover:bg-[#c9942f]"
+              >
+                <Megaphone size={17} aria-hidden="true" />
+                Marketing Content
+              </Link>
+              <Link
+                href="/admin/marketing/studio"
+                className="inline-flex items-center justify-center gap-2 rounded bg-[#073b7a] px-4 py-2.5 text-sm font-bold text-white transition hover:bg-[#0b4ea2]"
+              >
+                <Palette size={17} aria-hidden="true" />
+                Marketing Studio
+              </Link>
+            </div>
+          </div>
+          <div className="mt-5">
+            {adminLoadError ? (
+              <p className="mb-5 rounded bg-red-50 px-4 py-3 text-sm font-semibold text-red-800 ring-1 ring-red-200">
+                {adminLoadError}
+              </p>
+            ) : null}
+            <ApplicationAdmin
+              applications={applications.map((application) => ({
+                ...application,
+                createdAt: application.createdAt.toISOString(),
+              }))}
+            />
+          </div>
+        </div>
+      </section>
+    </PageShell>
+  );
+}

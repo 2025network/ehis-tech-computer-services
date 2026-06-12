@@ -1,0 +1,87 @@
+import Link from "next/link";
+import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import type { Metadata } from "next";
+import { PageShell } from "../components/PageShell";
+import { SocialLinks } from "../components/SocialLinks";
+import { WhatsAppCta } from "../components/WhatsAppCta";
+import { brand } from "../data";
+
+export const metadata: Metadata = {
+  title: "Contact",
+  description:
+    "Contact Ehi's Tech Computer Services for laptops, accessories, laptop repairs, upgrades, installations, and corporate supply inquiries.",
+  alternates: { canonical: "/contact" },
+  openGraph: {
+    url: "/contact",
+    title: "Contact Ehi's Tech Computer Services",
+    description:
+      "Contact Ehi's Tech for laptop sales, accessories, repairs, upgrades, installations, and IT solutions in Nigeria.",
+  },
+};
+
+export default function ContactPage() {
+  const message = encodeURIComponent(
+    `Hello ${brand.name}, I would like to make an inquiry about your laptop or IT services.`
+  );
+
+  return (
+    <PageShell>
+      <section className="bg-[#073b7a] py-14 text-white sm:py-16">
+        <div className="section-shell max-w-4xl">
+          <p className="text-sm font-bold uppercase tracking-wide text-[#d9a441]">Contact</p>
+          <h1 className="mt-3 text-4xl font-bold leading-tight sm:text-5xl">
+            Let us help with your next computer need.
+          </h1>
+          <p className="mt-5 text-lg leading-8 text-blue-100">
+            Reach out for laptop sales, accessories, repairs, upgrades, installations, and supply
+            support.
+          </p>
+        </div>
+      </section>
+
+      <section className="section-shell grid gap-8 py-16 lg:grid-cols-[0.9fr_1.1fr]">
+        <div className="grid gap-4">
+          {[
+            { icon: Phone, title: "Phone", value: brand.phoneDisplay },
+            { icon: Mail, title: "Email", value: brand.email },
+            { icon: MapPin, title: "Office", value: brand.address },
+          ].map((item) => {
+            const Icon = item.icon;
+            return (
+              <div key={item.title} className="rounded border border-blue-100 bg-white p-5">
+                <Icon className="text-[#0b4ea2]" size={26} aria-hidden="true" />
+                <h2 className="mt-4 text-xl font-bold text-[#102033]">{item.title}</h2>
+                <p className="mt-2 text-slate-600">{item.value}</p>
+              </div>
+            );
+          })}
+        </div>
+        <div className="rounded bg-[#f4f8ff] p-6 ring-1 ring-blue-100 md:p-8">
+          <h2 className="text-3xl font-bold text-[#073b7a]">Send a quick WhatsApp message.</h2>
+          <p className="mt-4 leading-7 text-slate-700">
+            Use WhatsApp for inquiries about laptops, accessories, repairs, upgrades, installations,
+            tracking, or corporate supply.
+          </p>
+          <Link
+            href={`https://wa.me/${brand.whatsapp}?text=${message}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-7 inline-flex items-center gap-2 rounded bg-[#0b4ea2] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#073b7a]"
+          >
+            Chat on WhatsApp <MessageCircle size={18} aria-hidden="true" />
+          </Link>
+          <div className="mt-7 rounded bg-white p-5 ring-1 ring-blue-100">
+            <h3 className="text-lg font-bold text-[#073b7a]">Follow us online</h3>
+            <p className="mt-2 text-sm leading-6 text-slate-600">
+              Get laptop tips, stock updates, upgrade advice, and IT support.
+            </p>
+            <SocialLinks className="mt-4" showLabels />
+          </div>
+          <div className="mt-5">
+            <WhatsAppCta />
+          </div>
+        </div>
+      </section>
+    </PageShell>
+  );
+}

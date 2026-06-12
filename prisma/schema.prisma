@@ -1,0 +1,129 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Application {
+  id                 Int      @id @default(autoincrement())
+  fullName           String
+  phone              String
+  email              String
+  destinationCountry String
+  purposeOfTravel    String?
+  travelPurpose      String
+  message            String
+  status             String   @default("Pending")
+  adminNotes         String?
+  trackingCode       String   @unique
+  passportUploadPath String?
+  passportPhotoPath  String?
+  bankStatementPath  String?
+  supportingDocPath  String?
+  passportUploadOriginalPath   String?
+  passportUploadOptimizedPath  String?
+  passportUploadOriginalSize   Int?
+  passportUploadOptimizedSize  Int?
+  passportPhotoOriginalPath    String?
+  passportPhotoOptimizedPath   String?
+  passportPhotoOriginalSize    Int?
+  passportPhotoOptimizedSize   Int?
+  bankStatementOriginalPath    String?
+  bankStatementOptimizedPath   String?
+  bankStatementOriginalSize    Int?
+  bankStatementOptimizedSize   Int?
+  supportingDocOriginalPath    String?
+  supportingDocOptimizedPath   String?
+  supportingDocOriginalSize    Int?
+  supportingDocOptimizedSize   Int?
+  createdAt          DateTime @default(now())
+}
+
+model BlogPost {
+  id            Int      @id @default(autoincrement())
+  title         String
+  slug          String   @unique
+  excerpt       String
+  content       String
+  featuredImage String
+  published     Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @default(now()) @updatedAt
+}
+
+model ProductCategory {
+  id          Int       @id @default(autoincrement())
+  name        String    @unique
+  slug        String    @unique
+  description String?
+  products    Product[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Product {
+  id          Int       @id @default(autoincrement())
+  name        String
+  slug        String    @unique
+  brand       String
+  model       String?
+  categoryId  Int
+  category    ProductCategory @relation(fields: [categoryId], references: [id])
+  ramGb       Int
+  storageGb   Int
+  storageType String    @default("SSD")
+  condition   String
+  price       Int
+  status      String    @default("Available")
+  warranty    String?
+  description String
+  imageUrl    String?
+  featured    Boolean   @default(false)
+  quoteRequests QuoteRequest[]
+  warrantyRecords WarrantyRecord[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model QuoteRequest {
+  id        Int      @id @default(autoincrement())
+  productId Int?
+  product   Product? @relation(fields: [productId], references: [id])
+  fullName  String
+  phone     String
+  email     String?
+  quantity  Int      @default(1)
+  budget    Int?
+  message   String
+  status    String   @default("New")
+  createdAt DateTime @default(now())
+}
+
+model BulkOrderRequest {
+  id           Int      @id @default(autoincrement())
+  organization String
+  contactName  String
+  phone        String
+  email        String?
+  quantity     Int
+  budget       Int?
+  requirements String
+  status       String   @default("New")
+  createdAt    DateTime @default(now())
+}
+
+model WarrantyRecord {
+  id           Int      @id @default(autoincrement())
+  productId    Int?
+  product      Product? @relation(fields: [productId], references: [id])
+  customerName String
+  phone        String
+  serialNumber String?
+  issue        String
+  status       String   @default("Received")
+  expiresAt    DateTime?
+  createdAt    DateTime @default(now())
+}
