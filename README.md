@@ -21,6 +21,14 @@ npm run start
 npm run lint
 ```
 
+`npm run build` prepares a Hostinger-ready standalone bundle after the Next.js build by copying `.next/static` and `public` into `.next/standalone`. This is required so production CSS files, JavaScript chunks, images, and logos load correctly from `/_next/static` and `/` asset paths.
+
+## Hostinger Deployment
+
+For Hostinger Node.js hosting, deploy the generated `.next/standalone` bundle and make sure its included `.next/static` and `public` folders are uploaded with it. Start the app from the standalone server entry, usually `server.js`, instead of serving raw HTML files from `.next/server`.
+
+If the deployed site appears as plain HTML, verify that requests like `/_next/static/chunks/*.css` return `200` and are not missing or blocked by the hosting file structure.
+
 ## Project Identity
 
 - Company name: Ehi's Tech Computer Services
