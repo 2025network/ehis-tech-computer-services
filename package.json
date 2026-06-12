@@ -4,9 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm run db:prepare && next build && npm run hostinger:prepare",
+    "build": "npm run db:prepare && next build",
     "start": "next start",
-    "hostinger:prepare": "node scripts/prepare-hostinger-deploy.cjs",
     "postinstall": "prisma generate",
     "lint": "eslint .",
     "prisma:generate": "prisma generate",
